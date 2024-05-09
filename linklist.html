@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        class linklist {
+            constructor(data) {
+                this.head = {
+                    data: data,
+                    next: null,
+                }
+                this.tail = this.head;
+                this.next = null;
+                this.size = 1;
+            }
+            //push method
+            push(data) {
+                let list = {
+                    data: data,
+                    next: null,
+                }
+                this.tail.next = list
+                this.tail = list;
+                this.size = this.size + 1;
+            }
+            //print method
+            printData(data) {
+                let count = 0;
+                let current = this.head
+                while (count < this.size) {
+                    console.log(current);
+                    current = current.next
+                    count++;
+
+                }
+            }
+            //reverse method
+            reverseData() {
+                let current = this.head;
+                let previous = null;
+                while (current) {
+                    let nextnode = current.next;
+                    current.next = previous;
+                    previous = current;
+                    current = nextnode;
+                }
+                this.head = previous;
+            }
+            //delete method
+            deleteData(index) {
+                let count = 0;
+                let current = this.head;
+                if (index == 1) {
+                    console.log("this data is not  remove");
+                } else {
+                    while (count < index - 1) {
+                        current = current.next;
+                        count++
+                    }
+                    let nextnode = current.next.next;
+                    current.next = nextnode;
+                    this.size = this.size - 1
+                }
+            }
+        }
+
+
+
+        let list = new linklist(10)
+
+        console.log("push Data");
+        list.push(20)
+        list.push(30)
+        list.push(40)
+        list.push(50)
+        console.log(list);
+
+        console.log("print Data");
+        list.printData()
+
+        console.log("reverse Data");
+        list.reverseData()
+        list.printData()
+
+        console.log("remove data");
+        list.deleteData(2)
+        list.printData()
+
+
+    </script>
+</body>
+
+</html>
